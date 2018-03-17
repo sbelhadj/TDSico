@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A Simple ICO DApp for TDS</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <style>
+    .margin-top-3 {
+      margin-top: 2em;
+    }
+  </style>
+</head>
+<body class="container">
+  <h1>A Simple ICO DApp for TDS</h1>
+  <div class="col-sm-offset-1 col-sm-4 margin-top-3">
+    <div class="row">
+      <h2>TDSicoContract contract address:</h2>
+      <div id="ico-contract-contract-address"></div>    
+    </div>
+    <div class="row">
+      <h2>TDSicoToken contract address:</h2>
+      <div id="ico-token-contract-address"></div>    
+    </div>    
+    <div class="row">
+      <h2>TDS ICO Owner address:</h2>
+      <div id="ico-owner-address"></div>    
+    </div>    
+    <div class="row">
+      <h2>Token Stats</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <tr>
+            <td>Tokens For Sale</td>
+            <td id="tokens-total"></td>
+          </tr>
+          <tr>
+            <td>Tokens Sold</td>
+            <td id="tokens-sold"></td>
+          </tr>
+          <tr>
+            <td>Price Per Token</td>
+            <td id="token-cost"></td>
+          </tr>
+          <tr>
+            <td>Balance in the ICO Onwer address</td>
+            <td id="contract-balance"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row margin-top-3">
+      <h2>Lookup Investor Info</h2>
+      <div class="col-sm-12">
+        <input type="text" id="investor-info", class="col-sm-8" placeholder="Enter the investor address" />&nbsp;
+        <a href="#" onclick="lookupInvestorInfo()" class="btn btn-primary">Lookup</a>
+        <div class="investor-details row text-left">
+          <div id="tokens-bought" class="margin-top-3 col-md-12"></div> 
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div class="col-sm-7 margin-top-3">
+    <h2>Investors</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Investor</th>
+            <th>TDS Tokens</th>
+          </tr>
+        </thead>
+        <tbody id="investor-rows">
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <div class="row margin-top-3">
+      <h2>Purchase TDS Tokens</h2>
+      <div class="col-sm-12">
+        <div id="buy-msg"></div>
+        <input type="text" id="buy1" class="col-sm-8" placeholder="Number of TDS tokens to buy"/>&nbsp;
+        <a href="#" onclick="buyTokens()" class="btn btn-primary">Buy</a>
+      </div>
+      <div class="col-sm-12">
+        <div id="buy-msg"></div>
+        <input type="text" id="buy2" class="col-sm-8" placeholder="Ethers to buy TDS tokens"/>&nbsp;
+        <a href="#" onclick="buyTokensWithEther()" class="btn btn-primary">Buy</a>
+      </div>
+    </div>
+    <hr>
+    <h2>Events</h2>
+    <div id="result-tx"></div>
+    <div id="result-receipt"></div>
+    <div id="result-logs"></div>    
+    <div id="events-msg"></div> 
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="app.js"></script>
+</html>
