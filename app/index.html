@@ -1,100 +1,219 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>A Simple ICO DApp for TDS</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-  <style>
-    .margin-top-3 {
-      margin-top: 2em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>A Simple ICO dApp for TDS</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+
 </head>
-<body class="container">
-  <h1>A Simple ICO DApp for TDS</h1>
-  <div class="col-sm-offset-1 col-sm-4 margin-top-3">
-    <div class="row">
-      <h2>TDSicoContract contract address:</h2>
-      <div id="ico-contract-contract-address"></div>    
-    </div>
-    <div class="row">
-      <h2>TDSicoToken contract address:</h2>
-      <div id="ico-token-contract-address"></div>    
-    </div>    
-    <div class="row">
-      <h2>TDS ICO Owner address:</h2>
-      <div id="ico-owner-address"></div>    
-    </div>    
-    <div class="row">
-      <h2>Token Stats</h2>
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <tr>
-            <td>Tokens For Sale</td>
-            <td id="tokens-total"></td>
-          </tr>
-          <tr>
-            <td>Tokens Sold</td>
-            <td id="tokens-sold"></td>
-          </tr>
-          <tr>
-            <td>Price Per Token</td>
-            <td id="token-cost"></td>
-          </tr>
-          <tr>
-            <td>Balance in the ICO Onwer address</td>
-            <td id="contract-balance"></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <div class="row margin-top-3">
-      <h2>Lookup Investor Info</h2>
-      <div class="col-sm-12">
-        <input type="text" id="investor-info", class="col-sm-8" placeholder="Enter the investor address" />&nbsp;
-        <a href="#" onclick="lookupInvestorInfo()" class="btn btn-primary">Lookup</a>
-        <div class="investor-details row text-left">
-          <div id="tokens-bought" class="margin-top-3 col-md-12"></div> 
+
+<body class="theme-black overlay-open">
+    
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">A Simple ICO dApp for TDS</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>  
-  <div class="col-sm-7 margin-top-3">
-    <h2>Investors</h2>
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Investor</th>
-            <th>TDS Tokens</th>
-          </tr>
-        </thead>
-        <tbody id="investor-rows">
-        </tbody>
-      </table>
-    </div>
-    <hr>
-    <div class="row margin-top-3">
-      <h2>Purchase TDS Tokens</h2>
-      <div class="col-sm-12">
-        <div id="buy-msg"></div>
-        <input type="text" id="buy1" class="col-sm-8" placeholder="Number of TDS tokens to buy"/>&nbsp;
-        <a href="#" onclick="buyTokens()" class="btn btn-primary">Buy</a>
-      </div>
-      <div class="col-sm-12">
-        <div id="buy-msg"></div>
-        <input type="text" id="buy2" class="col-sm-8" placeholder="Ethers to buy TDS tokens"/>&nbsp;
-        <a href="#" onclick="buyTokensWithEther()" class="btn btn-primary">Buy</a>
-      </div>
-    </div>
-    <hr>
-    <h2>Events</h2>
-    <div id="result-tx"></div>
-    <div id="result-receipt"></div>
-    <div id="result-logs"></div>    
-    <div id="events-msg"></div> 
-  </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="body bg-teal">
+                            <div class="font-bold m-b--35">Token Stats</div>
+                            <ul class="dashboard-stat-list">
+                                <li>
+                                    Tokens For Sale
+                                    <span class="pull-right"><div id="tokens-total"></div></span>
+                                </li>
+                                <li>
+                                    Tokens Sold
+                                    <span class="pull-right"><div id="tokens-sold"></div></span>
+                                </li>
+                                <li>
+                                    Price Per Token
+                                    <span class="pull-right"><div id="token-cost"></div></span>
+                                </li>
+                                <li>
+                                    Balance in the ICO Onwer address
+                                    <span class="pull-right"><div id="contract-balance"></div></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> 
+                    <div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">  
+                                    <h2>Purchase TDS Tokens</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <form>
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                        <div id="buy-msg"></div>
+                                            <div class="form-line">
+                                                <input type="text" id="buy1" class="form-control" placeholder="Number of TDS tokens to buy"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <button type="button" onclick="buyTokens()"  class="btn btn-primary btn-lg m-l-15 waves-effect">Buy</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form>
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                        <div id="buy-msg"></div>
+                                            <div class="form-line">
+                                                <input type="text" id="buy2" class="form-control" placeholder="Ethers for buying TDS tokens"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <button type="button" onclick="buyTokensWithEther()"  class="btn btn-primary btn-lg m-l-15 waves-effect">Buy</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>                                         
+                    <div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>TDSicoContract contract address:</h2>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div id="ico-contract-contract-address"></div>
+                        </div>                       
+                    </div>
+					<div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>TDSicoToken contract address:</h2>     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div id="ico-token-contract-address"></div> 
+                        </div>
+                    </div>
+					<div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>TDS ICO Owner address:</h2>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div id="ico-owner-address"></div> 
+                        </div>
+                    </div>                
+                </div>
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">  
+									<h2>Investors</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+							<div class="table-responsive">
+								<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th>Investor</th>
+									<th>TDS Tokens</th>
+								  </tr>
+								</thead>
+								<tbody id="investor-rows">
+								</tbody>
+								</table>
+							</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="header">
+                            <h2>Events</h2>
+                        </div>
+                        <div class="body">
+                            <div id="result-tx"></div>
+                            <div id="result-receipt"></div>
+                            <div id="result-logs"></div>    
+                            <div id="events-msg"></div>
+                        </div>
+                    </div>                    
+					<div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">  
+									<h2>Lookup Investor Info</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+							<form>
+								<div class="row clearfix">
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<div class="form-group">
+										<div id="buy-msg"></div>
+											<div class="form-line">
+												<input type="text" id="investor-info" class="form-control" placeholder="Enter the investor address" />
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<button type="button" onclick="lookupInvestorInfo()"  class="btn btn-primary btn-lg m-l-15 waves-effect">Lookup</button>
+									</div>
+									<div id="tokens-bought" class="margin-top-3 col-md-12"></div> 
+								</div>
+							</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <!-- Task Info -->
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                </div>
+            </div>
+        </div>
+    </section>
+	<script src="app.js"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<script src="app.js"></script>
+
 </html>

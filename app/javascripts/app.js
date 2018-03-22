@@ -1,9 +1,16 @@
 // Import the page's CSS. Webpack will know what to do with it.
-import "../stylesheets/app.css";
+import "../css/app.css";
+import "../css/all-themes.css";
+import "../css/materialize.css";
+import "../css/style.css";
 
 // Import libraries we need.
 import { default as Web3} from 'web3';
-import { default as contract } from 'truffle-contract'
+import { default as contract } from 'truffle-contract';
+//import $ from 'jquery';
+import bootstrap from 'bootstrap';
+import Waves from 'node-waves';
+import admin from '../../app/javascripts/admin.js'
 
 /*
  * When you compile and deploy your TDSicoContract contract,
