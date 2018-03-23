@@ -8,7 +8,7 @@ module.exports = {
   networks: {
   	ropsten: {
     provider: function() {
-      return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/7aGeand7sthnmtOh7Wn4");
+      return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/XXXXXXXXXXXXXXXX");
     },
     network_id: '3',
     gas: 4700000
