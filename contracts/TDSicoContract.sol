@@ -1,4 +1,4 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.21;
 
 // ================= Ownable Contract start =============================
 /*
@@ -88,7 +88,7 @@ contract StandardToken is ERC20, SafeMath {
   function transfer(address _to, uint _value) public onlyPayloadSize(2 * 32)  returns (bool success){
     balances[msg.sender] = safeSubtract(balances[msg.sender], _value);
     balances[_to] = safeAdd(balances[_to], _value);
-    Transfer(msg.sender, _to, _value);
+    emit Transfer(msg.sender, _to, _value);
     return true;
   }
 
@@ -98,7 +98,7 @@ contract StandardToken is ERC20, SafeMath {
     balances[_to] = safeAdd(balances[_to], _value);
     balances[_from] = safeSubtract(balances[_from], _value);
     allowed[_from][msg.sender] = safeSubtract(_allowance, _value);
-    Transfer(_from, _to, _value);
+    emit Transfer(_from, _to, _value);
     return true;
   }
 
@@ -108,7 +108,7 @@ contract StandardToken is ERC20, SafeMath {
 
   function approve(address _spender, uint _value) public returns (bool success) {
     allowed[msg.sender][_spender] = _value;
-    Approval(msg.sender, _spender, _value);
+    emit Approval(msg.sender, _spender, _value);
     return true;
   }
 
@@ -151,7 +151,7 @@ contract Pausable is Ownable {
   */
   function pause() public onlyOwner whenNotPaused returns (bool) {
     paused = true;
-    Pause();
+    emit Pause();
     return true;
   }
 
@@ -160,7 +160,7 @@ contract Pausable is Ownable {
   */
   function unpause() public onlyOwner whenPaused returns (bool) {
     paused = false;
-    Unpause();
+    emit Unpause();
     return true;
   }
 }
@@ -220,8 +220,8 @@ contract TDSicoToken is SafeMath, StandardToken, Pausable {
       }
       if ( exists == false || investors.length == 0) investors.push(_recipient);
       
-      Transfer(0x0, owner, _value);
-      Transfer(owner, _recipient, _value);
+      emit Transfer(0x0, owner, _value);
+      emit Transfer(owner, _recipient, _value);
       return true;
   }
 
@@ -259,7 +259,7 @@ contract TDSicoContract is SafeMath, Pausable {
   
 
   function CreateICO(address to, uint256 val) internal returns (bool success) {
-    LogCreateICO(0x0, to, val);
+    emit LogCreateICO(0x0, to, val);
     return ico.sell(to, val);
   }
 
@@ -317,14 +317,14 @@ contract TDSicoContract is SafeMath, Pausable {
 
       require(CreateICO(_beneficiary, tokensToAllocate));
       msg.sender.transfer(etherToRefund);
-      ethFundDeposit.transfer(this.balance);
+      ethFundDeposit.transfer(address(this).balance);
       return;
     }
 
     totalSupply = checkedSupply;
 
     require(CreateICO(_beneficiary, tokens)); 
-    ethFundDeposit.transfer(this.balance);
+    ethFundDeposit.transfer(address(this).balance);
   }
 
   function tokenCreationCap() view public returns (uint) {
@@ -339,6 +339,6 @@ contract TDSicoContract is SafeMath, Pausable {
     require (!isFinalized);
     // move to operational
     isFinalized = true;
-    ethFundDeposit.transfer(this.balance);
+    ethFundDeposit.transfer(address(this).balance);
   }
 }
