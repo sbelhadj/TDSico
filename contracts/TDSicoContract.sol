@@ -60,8 +60,8 @@ contract SafeMath {
  */
 contract ERC20 {
   uint public totalSupply;
-  function balanceOf(address who) public constant returns (uint);
-  function allowance(address owner, address spender) public constant returns (uint);
+  function balanceOf(address who) public view returns (uint);
+  function allowance(address owner, address spender) public view returns (uint);
 
   function transfer(address to, uint value) public returns (bool ok);
   function transferFrom(address from, address to, uint value) public returns (bool ok);
@@ -102,7 +102,7 @@ contract StandardToken is ERC20, SafeMath {
     return true;
   }
 
-  function balanceOf(address _owner) public constant returns (uint balance) {
+  function balanceOf(address _owner) public view returns (uint balance) {
     return balances[_owner];
   }
 
@@ -112,7 +112,7 @@ contract StandardToken is ERC20, SafeMath {
     return true;
   }
 
-  function allowance(address _owner, address _spender) public constant returns (uint remaining) {
+  function allowance(address _owner, address _spender) public view returns (uint remaining) {
     return allowed[_owner][_spender];
   }
 }
@@ -198,7 +198,7 @@ contract TDSicoToken is SafeMath, StandardToken, Pausable {
     return super.approve(_spender,_value);
   }
 
-  function balanceOf(address _owner) public constant returns (uint balance) {
+  function balanceOf(address _owner) public view returns (uint balance) {
     return super.balanceOf(_owner);
   }
 
@@ -225,7 +225,7 @@ contract TDSicoToken is SafeMath, StandardToken, Pausable {
       return true;
   }
 
-  function getInvestorsCount() public constant returns(uint investorsCount) {
+  function getInvestorsCount() public view returns(uint investorsCount) {
     return investors.length;
   }
 

@@ -1,13 +1,17 @@
 {
   "name": "truffle-init-webpack",
   "version": "0.0.2",
-  "description": "Frontend example using truffle v3",
+  "description": "TDS ico Token",
   "scripts": {
-    "lint": "eslint ./",
+    "lint": "./node_modules/.bin/solium -d contracts --fix",
+    "coverage": "./node_modules/.bin/solidity-coverage",
+    "compile": "./node_modules/.bin/truffle compile",
+    "test": "./node_modules/.bin/truffle test",
+    "migrate": "./node_modules/.bin/truffle migrate",
     "build": "webpack",
     "dev": "webpack-dev-server --watch --watch-poll --host 0.0.0.0 --port 8080"
   },
-  "author": "Douglas von Kohorn",
+  "author": "Sami Belhadj",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -31,6 +35,9 @@
     "jquery": "^3.3.1",
     "json-loader": "^0.5.4",
     "popper.js": "^1.14.1",
+    "solc": "^0.4.25",
+    "solidity-coverage": "^0.5.4",
+    "solium": "^1.1.7",
     "style-loader": "^0.13.1",
     "truffle-contract": "^1.1.11",
     "truffle-hdwallet-provider": "^0.0.3",
@@ -39,6 +46,10 @@
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
-    "popper.js": "^1.14.1"
+    "dotenv": "^6.0.0",
+    "node-waves": "^0.7.6",
+    "popper.js": "^1.14.1",
+    "scrypt": "^6.0.3",
+    "zeppelin-solidity": "^1.10.0"
   }
 }

@@ -4,8 +4,8 @@ const TDSicoContract = artifacts.require('TDSicoContract');
 module.exports = function(deployer) {
   deployer.deploy(
     TDSicoToken,
-    'TDS Token',
-    'TDS',
+    'TripVerDal Token',
+    'TVD',
     '18',
     '1.0'
   ).then(() => {
@@ -15,8 +15,8 @@ module.exports = function(deployer) {
       TDSicoToken.address,
       '100000000000000000000000000', // 100000000 Token
       '1000', // 1 ETH = 1000 Token
-      '1514922178', // 02/01/2018
-      '1530820589', // 05/07/2018
+      '1538382716', // 01/10/2018
+      '1633077116', // 01/10/2021
       '100000000000000000' // 0.1 ETH minimum eth to send
     ).then(() => {
       return TDSicoToken.deployed().then(function(instance) {
