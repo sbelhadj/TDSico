@@ -2,7 +2,7 @@
 require('babel-register')
 
 var HDWalletProvider = require("truffle-hdwallet-provider");
-var mnemonic = "enter nature virtual globe finish mandate heart bracket liar multiply gentle luggage";
+var mnemonic = "xxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxxx xxxx";
 
 module.exports = {
   networks: {
