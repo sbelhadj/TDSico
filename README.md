@@ -23,9 +23,7 @@ Step 6: Using the DApp
 
 
 Setting up the environment:
-Ubuntu version : 
-sbelhadj@sbelhadj-VirtualBox:~/TDS/github/TDSico$ uname -a
-Linux sbelhadj-VirtualBox 4.15.0-48-generic #51~16.04.1-Ubuntu SMP Fri Apr 5 12:01:12 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+Ubuntu version : 16.04.1-Ubuntu SMP
 
 Install NodeJs & npm : 
     sudo apt-get update
