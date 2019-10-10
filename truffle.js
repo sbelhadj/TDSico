@@ -2,13 +2,13 @@
 require('babel-register')
 
 var HDWalletProvider = require("truffle-hdwallet-provider");
-var mnemonic = "xxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxxx xxxx";
+var mnemonic = "enter nature virtual globe finish mandate heart bracket liar multiply gentle luggage";
 
 module.exports = {
   networks: {
   	ropsten: {
     provider: function() {
-      return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/PUT_YOUR_INFURA_ACCOUNT");
+      return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/2abd2d97dcc3456997b35dcbdedb9faa");
     },
     network_id: '3',
     gas: 4700000
